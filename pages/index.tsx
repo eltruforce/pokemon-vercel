@@ -6,6 +6,12 @@ import {
   BoxGeometry,
   MeshBasicMaterial,
   Mesh,
+  SphereGeometry,
+  TextureLoader,
+  MeshPhongMaterial,
+  BackSide,
+  AmbientLight,
+  HemisphereLight,
 } from "three";
 
 function HomePage() {
@@ -29,8 +35,22 @@ function HomePage() {
     const geometry = new BoxGeometry(1, 1, 1);
     const material = new MeshBasicMaterial({ color: 0xffffff });
     const cube = new Mesh(geometry, material);
-
     scene.add(cube);
+
+    // create skybox
+    const skyGeometry = new SphereGeometry(360, 25, 25);
+    const skyLoader = new TextureLoader();
+    const skyTexture = skyLoader.load("/custom-sky.png");
+    const skyMaterial = new MeshPhongMaterial({
+      map: skyTexture,
+    });
+    const skybox = new Mesh(skyGeometry, skyMaterial);
+    scene.add(skybox);
+    skybox.material.side = BackSide;
+
+    // create ilumination
+    scene.add(new AmbientLight(0xffffff, 0.8));
+    scene.add(new HemisphereLight(0xffffff, 0.8));
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
