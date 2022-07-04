@@ -1,69 +1,64 @@
 import { useEffect } from "react";
-import {
-  Scene,
-  WebGL1Renderer,
-  PerspectiveCamera,
-  BoxGeometry,
-  MeshBasicMaterial,
-  Mesh,
-  SphereGeometry,
-  TextureLoader,
-  MeshPhongMaterial,
-  BackSide,
-  AmbientLight,
-  HemisphereLight,
-} from "three";
+import Background from "../components/Background";
+
+class Human {
+  public name: string;
+  private height: number;
+  private weight: number;
+
+  constructor(name: string, height: number, weight: number) {
+    this.name = name;
+    this.height = height;
+    this.weight = weight;
+    this.greet();
+  }
+
+  private greet() {
+    console.log("Hi, I am a human and my name is: " + this.name);
+  }
+}
+
+class Fighter extends Human {
+  private power = 100;
+  private defense = 100;
+
+  constructor(name, scene: Scene) {
+    super(name, 1.7, 80);
+    console.log(this.name);
+    console.log(scene);
+  }
+
+  public duplicateStats() {
+    this.power *= 2;
+    this.defense *= 2;
+    console.log(this.power);
+    console.log(this.defense);
+  }
+
+  public execute(fn) {
+    fn();
+  }
+}
+
+class Scene {
+  private score = 0;
+
+  constructor() {
+    const fighter = new Fighter("name", this);
+    const human = new Human("human", 1.8, 90);
+
+    // fighter.execute(this.increaseScore.bind(this));
+  }
+
+  private increaseScore() {
+    this.score += 10;
+    console.log(this);
+  }
+}
 
 function HomePage() {
-  useEffect(() => {
-    const scene = new Scene();
-    const renderer = new WebGL1Renderer({
-      antialias: true,
-      canvas: document.getElementById("bg"),
-    });
-    const camera = new PerspectiveCamera(
-      50,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-
-    // move camera
-    camera.position.z = 6;
-
-    // create cube
-    const geometry = new BoxGeometry(1, 1, 1);
-    const material = new MeshBasicMaterial({ color: 0xffffff });
-    const cube = new Mesh(geometry, material);
-    scene.add(cube);
-
-    // create skybox
-    const skyGeometry = new SphereGeometry(360, 25, 25);
-    const skyLoader = new TextureLoader();
-    const skyTexture = skyLoader.load("/custom-sky.png");
-    const skyMaterial = new MeshPhongMaterial({
-      map: skyTexture,
-    });
-    const skybox = new Mesh(skyGeometry, skyMaterial);
-    scene.add(skybox);
-    skybox.material.side = BackSide;
-
-    // create ilumination
-    scene.add(new AmbientLight(0xffffff, 0.8));
-    scene.add(new HemisphereLight(0xffffff, 0.8));
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    function animate() {
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    }
-    animate();
-  }, []);
-  return <canvas id="bg" />;
+  new Scene();
+  return <Background />;
 }
 
 export default HomePage;
