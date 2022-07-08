@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Background from "../components/Background";
+import Section from "../components/section";
 
 class Human {
   public name: string;
@@ -57,8 +58,16 @@ class Scene {
 }
 
 function HomePage() {
-  new Scene();
-  return <Background />;
+  return (
+    <div>
+      <div className="containe">
+        <Section />
+        <Section />
+        <Section />
+      </div>
+      <Background />
+    </div>
+  );
 }
 
 export default HomePage;
