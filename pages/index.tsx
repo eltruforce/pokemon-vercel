@@ -60,7 +60,7 @@ class Scene {
 function HomePage() {
   return (
     <div>
-      <div className="containe">
+      <div id="container">
         <Section />
         <Section />
         <Section />
