@@ -13,7 +13,7 @@ export default class Groudon {
   }
 
   private position() {
-    this.object.translateZ(-2);
+    this.object.translateY(-2);
     this.object.translateX(-9);
     this.object.translateZ(11.5);
     this.object.rotateY(Math.PI / 6);

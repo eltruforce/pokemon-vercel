@@ -4,6 +4,7 @@ import Lights from "../class/lights";
 import Loader from "../class/loader";
 import Charizard from "../class/pokemon/charizard";
 import Entei from "../class/pokemon/entei";
+import Grass from "../class/pokemon/grass";
 import Groudon from "../class/pokemon/groudon";
 import Logo from "../class/pokemon/logo";
 import Pokeball from "../class/pokemon/pokeball";
@@ -25,8 +26,7 @@ export default class Scene extends SceneThree {
     new Groudon(this, loader);
     new Charizard(this, loader);
     new Zekrom(this, loader);
-    this.update(renderer);
-
+    new Grass(this, loader);
     this.update(renderer);
   }
   private update(renderer) {

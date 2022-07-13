@@ -13,7 +13,7 @@ export default class Charizard {
   }
 
   private position() {
-    this.object.translateZ(-2);
+    this.object.translateY(-2);
     this.object.translateX(-10);
     this.object.translateZ(16.5);
     this.object.rotateY(Math.PI / 2);
