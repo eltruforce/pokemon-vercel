@@ -1,17 +1,24 @@
 import { WebGL1Renderer } from "three";
 import Scene from "./scenes/scene";
 
-export default class Renderer extends WebGL1Renderer {
-  constructor() {
-    super({ antialias: true, canvas: document.getElementById("bg") });
-    this.config();
-    new Scene(this);
-  }
+const Renderer = () => {
+  const renderer = new WebGL1Renderer({
+    antialias: true,
+    canvas: document.getElementById("bg"),
+  });
 
-  private config() {
-    this.setSize(window.innerWidth, window.innerHeight);
-    window.addEventListener("resize", this.resize);
-  }
+  const config = () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    window.addEventListener("resize", resize);
+  };
 
-  private resize = () => window.location.reload();
-}
+  const resize = () => {
+    window.location.reload();
+  };
+
+  config();
+
+  new Scene(renderer);
+};
+
+export default Renderer;

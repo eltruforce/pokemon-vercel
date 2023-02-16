@@ -1,11 +1,9 @@
-import React from "react";
-
 const Section = () => {
   return (
     <section>
       <div className="center" id="s2">
-        <h1>¡CUIDADO CON LA HIERBA!</h1>
-        <p>El peligro se esconde...</p>
+        <h1>BUT WATCH OUT!</h1>
+        <p>Some of them are well hidden...</p>
       </div>
     </section>
   );

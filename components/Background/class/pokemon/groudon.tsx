@@ -1,21 +1,20 @@
-import { Group } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-export default class Groudon {
-  private object: Group;
+const Groudon = (scene, loader: GLTFLoader) => {
+  let object = null;
 
-  constructor(scene, loader: GLTFLoader) {
-    loader.load("/groudon.glb", (gltf) => {
-      this.object = gltf.scene;
-      this.position();
-      scene.add(this.object);
-    });
-  }
+  const position = () => {
+    object.translateY(-2);
+    object.translateX(-9);
+    object.translateZ(11.5);
+    object.rotateY(Math.PI / 6);
+  };
 
-  private position() {
-    this.object.translateY(-2);
-    this.object.translateX(-9);
-    this.object.translateZ(11.5);
-    this.object.rotateY(Math.PI / 6);
-  }
-}
+  loader.load("/groudon.glb", (gltf) => {
+    object = gltf.scene;
+    position();
+    scene.add(object);
+  });
+};
+
+export default Groudon;

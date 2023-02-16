@@ -1,11 +1,11 @@
-import React from "react";
-
 const Section = () => {
   return (
     <section>
       <div className="center" id="s3">
-        <h1>CAPTURALOS A TODOS</h1>
-        <p>Son más de 800 pokemones, pero todo el mundo hace trampa</p>
+        <h1>CAN YOU FIND THEM ALL AND BECOME A POKEMON MASTER?</h1>
+        <p>
+          There are over 800 different Pokémon species waiting to be discovered
+        </p>
       </div>
     </section>
   );

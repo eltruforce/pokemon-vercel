@@ -1,13 +1,11 @@
-import React from "react";
-
 const Section = () => {
   return (
     <section>
       <div className="center" id="s1">
-        <h1>¿AÚN NO SABES QUÉ ES?</h1>
+        <h1>ARE YOU READY TO CATCH 'EM ALL?</h1>
         <p>
-          Es una historia donde jóvenes abandonan su hogar para hacer pelear
-          "pokemones" por razones cuestionables
+          Enter a world of adventure and train creatures with extraordinary
+          powers in Pokemon
         </p>
       </div>
     </section>

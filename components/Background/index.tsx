@@ -1,9 +1,12 @@
-import React, { Component } from "react";
-import { Scene, WebGL1Renderer, PerspectiveCamera } from "three";
+import { useEffect } from "react";
 import Renderer from "./renderer";
 
-export default class Background extends Component {
-  componentDidMount = () => new Renderer();
+const Background = () => {
+  useEffect(() => {
+    new Renderer();
+  }, []);
 
-  render = () => <canvas id="bg" />;
-}
+  return <canvas id="bg" />;
+};
+
+export default Background;

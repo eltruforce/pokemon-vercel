@@ -11,26 +11,27 @@ import Pokeball from "../class/pokemon/pokeball";
 import Zekrom from "../class/pokemon/zekrom";
 import Skybox from "../class/skybox";
 
-export default class Scene extends SceneThree {
-  private camera: Camera;
+const Scene = (renderer) => {
+  const scene = new SceneThree();
+  const loader = Loader();
+  const camera = Camera();
 
-  constructor(renderer) {
-    super();
-    const loader = new Loader();
-    this.camera = new Camera();
-    new Lights(this);
-    new Skybox(this);
-    new Logo(this, loader);
-    new Pokeball(this, loader);
-    new Entei(this, loader);
-    new Groudon(this, loader);
-    new Charizard(this, loader);
-    new Zekrom(this, loader);
-    new Grass(this, loader);
-    this.update(renderer);
-  }
-  private update(renderer) {
-    renderer.render(this, this.camera);
-    requestAnimationFrame(this.update.bind(this, renderer));
-  }
-}
+  new Lights(scene);
+  new Skybox(scene);
+  new Logo(scene, loader);
+  new Pokeball(scene, loader);
+  new Entei(scene, loader);
+  new Groudon(scene, loader);
+  new Charizard(scene, loader);
+  new Zekrom(scene, loader);
+  new Grass(scene, loader);
+
+  const update = () => {
+    renderer.render(scene, camera);
+    requestAnimationFrame(update);
+  };
+
+  update();
+};
+
+export default Scene;

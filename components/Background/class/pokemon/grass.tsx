@@ -1,35 +1,32 @@
-import { Group } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import Scene from "../../scenes/scene";
 
-export default class Grass {
-  private object: Group;
-  private scene: Scene;
+const Grass = (scene, loader: GLTFLoader) => {
+  let object = null;
 
-  constructor(scene, loader: GLTFLoader) {
-    this.scene = scene;
-    loader.load("/grass.glb", (gltf) => {
-      this.object = gltf.scene;
-      this.clone(-9, 11);
-      this.clone(-7, 11);
-      this.clone(-6, 12);
-      this.clone(-6, 14);
-      this.clone(-9, 13);
-      this.clone(-7, 13);
-      this.clone(-5, 13);
-      this.clone(-5, 15);
-      this.clone(-9, 16);
-      this.clone(-7, 16.5);
-      this.clone(-6, 16);
-      this.clone(-8, 17);
-    });
-  }
-  private clone(x, z) {
-    const object = this.object.clone();
-    object.translateY(-2);
-    object.translateX(x);
-    object.translateZ(z);
-    object.rotateY(Math.PI / 4);
-    this.scene.add(object);
-  }
-}
+  const clone = (x, z) => {
+    const cloneObject = object.clone();
+    cloneObject.translateY(-2);
+    cloneObject.translateX(x);
+    cloneObject.translateZ(z);
+    cloneObject.rotateY(Math.PI / 4);
+    scene.add(cloneObject);
+  };
+
+  loader.load("/grass.glb", (gltf) => {
+    object = gltf.scene;
+    clone(-9, 11);
+    clone(-7, 11);
+    clone(-6, 12);
+    clone(-6, 14);
+    clone(-9, 13);
+    clone(-7, 13);
+    clone(-5, 13);
+    clone(-5, 15);
+    clone(-9, 16);
+    clone(-7, 16.5);
+    clone(-6, 16);
+    clone(-8, 17);
+  });
+};
+
+export default Grass;

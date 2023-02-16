@@ -1,35 +1,34 @@
-import { Group } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-export default class Logo {
-  private object: Group;
-  private counter = 0;
+const Logo = (scene, loader: GLTFLoader) => {
+  let object = null;
+  let counter = 0;
 
-  constructor(scene, loader: GLTFLoader) {
-    loader.load("/logo.glb", (gltf) => {
-      this.object = gltf.scene;
-      this.position();
-      scene.add(this.object);
-    });
-    this.update();
-  }
-
-  private position() {
-    this.object.translateZ(-10);
+  const position = () => {
+    object.translateZ(-10);
     if (window.innerWidth > 900) {
-      const ratio = ((window.innerWidth - 900) * 3.2) / 460 + 5.6;
-      this.object.translateY(4);
-      this.object.translateX(ratio);
-      console.log(ratio);
+      const ratio = ((window.innerWidth - 900) * 2.28) / 460 + 4;
+      object.translateY(4);
+      object.translateX(ratio);
     } else {
-      this.object.translateY(7);
+      object.translateY(7);
     }
-  }
+  };
 
-  private update() {
-    this.counter += 0.01;
-    if (this.object) this.object.rotation.y = Math.sin(this.counter) / 5;
+  const update = () => {
+    counter += 0.01;
+    if (object) object.rotation.y = Math.sin(counter) / 5;
 
-    requestAnimationFrame(this.update.bind(this));
-  }
-}
+    requestAnimationFrame(update);
+  };
+
+  loader.load("/logo.glb", (gltf) => {
+    object = gltf.scene;
+    position();
+    scene.add(object);
+  });
+
+  update();
+};
+
+export default Logo;
