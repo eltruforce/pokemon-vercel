@@ -1,6 +1,6 @@
 # Pokemon Three
 
-[https://eltruforce-homepage.vercel.app/](https://eltruforce-homepage.vercel.app/)
+[https://pokemon-vercel-lac.vercel.app/](https://pokemon-vercel-lac.vercel.app/)
 
 ## Stack
 
